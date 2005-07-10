@@ -15,8 +15,8 @@ BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
-Prewikka is a professional looking application providing advanced feature like
-contextual filtering, aggregation, etc.
+Prewikka is a professional looking application providing advanced
+feature like contextual filtering, aggregation, etc.
 
 %prep
 %setup -q -n %{name}-%{version}-%{_rc}
@@ -28,7 +28,7 @@ python setup.py build
 rm -rf $RPM_BUILD_ROOT
 
 python setup.py install --optimize=2 \
-        --root=$RPM_BUILD_ROOT
+	--root=$RPM_BUILD_ROOT
 
 %clean
 rm -rf $RPM_BUILD_ROOT
