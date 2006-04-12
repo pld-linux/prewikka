@@ -1,15 +1,19 @@
-# TODO:
-# - do everything
+#
+# TODO:		- do we need both pyc and pyo files?
+#		- don't we need py files ?
+#		- startup/init files (assume standalone http server
+#		  not the apache/thttpd integration)
+#		- better files section 
+# 
 Summary:	Prelude IDS web application
 Summary(pl):	Aplikacja WWW dla Prelude IDS
 Name:		prewikka
-%define	_rc	rc7
-Version:	0.9.0
-Release:	0.%{_rc}.1
+Version:	0.9.3
+Release:	0.1
 License:	GPL
 Group:		Applications
-Source0:	http://www.prelude-ids.org/download/releases/%{name}-%{version}-%{_rc}.tar.gz
-# Source0-md5:	85407fa9c89cd0aab2f76cdc28197d90
+Source0:	http://www.prelude-ids.org/download/releases/%{name}-%{version}.tar.gz
+# Source0-md5:	4af486dcd2317022fdf5bb5ce8c1b199
 URL:		http://www.prelude-ids.org/
 BuildRequires:	python-cheetah
 BuildArch:	noarch
@@ -24,7 +28,7 @@ Prewikka to profesjonalnie wygl±daj±ca aplikacja daj±ca zaawansowane
 mo¿liwo¶ci, takie jak filtrowanie kontekstowe, agregacjê itp.
 
 %prep
-%setup -q -n %{name}-%{version}-%{_rc}
+%setup -q -n %{name}-%{version}
 
 %build
 python setup.py build
@@ -40,5 +44,32 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%dir %{py_sitedir}/%{name}
-%{py_sitedir}/%{name}/*.[co]
+%dir %{_usr}/share/%{name}
+%dir %{_usr}/share/%{name}/cgi-bin
+%dir %{_usr}/share/%{name}/database
+%dir %{_usr}/share/%{name}/htdocs
+%dir %{_usr}/share/%{name}/htdocs/css
+%dir %{_usr}/share/%{name}/htdocs/images
+%dir %{_usr}/share/%{name}/htdocs/js
+%dir %{py_sitescriptdir}/%{name}
+%dir %{py_sitescriptdir}/%{name}/modules
+%dir %{py_sitescriptdir}/%{name}/modules/auth
+%dir %{py_sitescriptdir}/%{name}/modules/auth/loginpassword
+%dir %{py_sitescriptdir}/%{name}/modules/log
+%dir %{py_sitescriptdir}/%{name}/modules/log/stderr
+%dir %{py_sitescriptdir}/%{name}/views
+%dir %{py_sitescriptdir}/%{name}/templates
+%attr(755,root,root) %{_bindir}/prewikka-httpd
+%attr(755,root,root) %{py_sitescriptdir}/%{name}/*.py[co]
+%attr(755,root,root) %{py_sitescriptdir}/%{name}/modules/*.py[co]
+%attr(755,root,root) %{py_sitescriptdir}/%{name}/modules/auth/*.py[co]
+%attr(755,root,root) %{py_sitescriptdir}/%{name}/modules/auth/loginpassword/*.py[co]
+%attr(755,root,root) %{py_sitescriptdir}/%{name}/modules/log/*.py[co]
+%attr(755,root,root) %{py_sitescriptdir}/%{name}/modules/log/stderr/*.py[co]
+%attr(755,root,root) %{py_sitescriptdir}/%{name}/views/*.py[co]
+%attr(755,root,root) %{py_sitescriptdir}/%{name}/templates/*.py[co]
+%attr(755,root,root) %{_usr}/share/%{name}/cgi-bin/*
+%{_usr}/share/%{name}/database/*
+%{_usr}/share/%{name}/htdocs/css/*
+%{_usr}/share/%{name}/htdocs/images/*
+%{_usr}/share/%{name}/htdocs/js/*
