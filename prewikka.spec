@@ -9,13 +9,15 @@ Summary:	Prelude IDS web application
 Summary(pl):	Aplikacja WWW dla Prelude IDS
 Name:		prewikka
 Version:	0.9.3
-Release:	0.1
+Release:	0.2
 License:	GPL
 Group:		Applications
 Source0:	http://www.prelude-ids.org/download/releases/%{name}-%{version}.tar.gz
 # Source0-md5:	4af486dcd2317022fdf5bb5ce8c1b199
 URL:		http://www.prelude-ids.org/
 BuildRequires:	python-cheetah
+Requires:	python-libprelude
+Requires:	python-libpreludedb
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
