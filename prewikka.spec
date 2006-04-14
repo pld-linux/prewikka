@@ -1,19 +1,16 @@
 #
-# TODO:		- do we need both pyc and pyo files?
-#		- don't we need py files ?
-#		- startup/init files (assume standalone http server
+# TODO:		- startup/init files (assume standalone http server
 #		  not the apache/thttpd integration)
-#		- better files section 
 # 
 Summary:	Prelude IDS web application
 Summary(pl):	Aplikacja WWW dla Prelude IDS
 Name:		prewikka
-Version:	0.9.3
-Release:	0.2
+Version:	0.9.4
+Release:	0.1
 License:	GPL
 Group:		Applications
 Source0:	http://www.prelude-ids.org/download/releases/%{name}-%{version}.tar.gz
-# Source0-md5:	4af486dcd2317022fdf5bb5ce8c1b199
+# Source0-md5:	d3eb1fb4186587fc5dad7e05f1037571
 URL:		http://www.prelude-ids.org/
 BuildRequires:	python-cheetah
 Requires:	python-libprelude
@@ -41,6 +38,9 @@ rm -rf $RPM_BUILD_ROOT
 python setup.py install --optimize=2 \
 	--root=$RPM_BUILD_ROOT
 
+install -d $RPM_BUILD_ROOT%{_sysconfdir}/%{name}
+install conf/prewikka.conf $RPM_BUILD_ROOT%{_sysconfdir}/%{name}
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -61,6 +61,8 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{py_sitescriptdir}/%{name}/modules/log/stderr
 %dir %{py_sitescriptdir}/%{name}/views
 %dir %{py_sitescriptdir}/%{name}/templates
+%dir %{_sysconfdir}/%{name}
+%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/%{name}/*.*
 %attr(755,root,root) %{_bindir}/prewikka-httpd
 %attr(755,root,root) %{py_sitescriptdir}/%{name}/*.py[co]
 %attr(755,root,root) %{py_sitescriptdir}/%{name}/modules/*.py[co]
