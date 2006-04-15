@@ -27,7 +27,7 @@ Prewikka to profesjonalnie wygl±daj±ca aplikacja daj±ca zaawansowane
 mo¿liwo¶ci, takie jak filtrowanie kontekstowe, agregacjê itp.
 
 %prep
-%setup -q -n %{name}-%{version}
+%setup -q
 
 %build
 python setup.py build
