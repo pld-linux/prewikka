@@ -13,55 +13,62 @@ if [ -f /etc/sysconfig/prewikka ]; then
 else
 	nls "Error: %s not found" /etc/sysconfig/prewikka
 	nls " Prewikka can't be run."
-        exit 1
+	exit 1
 fi
 
-
-case "$1" in
-    start)
-	    if [ ! -f /var/lock/subsys/prewikka ]; then
+start() {
+	if [ ! -f /var/lock/subsys/prewikka ]; then
 		msg_starting "Prewikka"
 		daemon --fork prewikka-httpd $PREWIKKA_OPTS
 		RETVAL=$?
 		[ $RETVAL -eq 0 ] && touch /var/lock/subsys/prewikka
-	    else
+	else
 		msg_already_running "Prewikka"
-	    fi
-	    ;;
+	fi
+}
 
-    stop)
-	    if [ -f /var/lock/subsys/prewikka ]; then
+stop() {
+	if [ -f /var/lock/subsys/prewikka ]; then
 		msg_stopping "Prewikka"
 		killproc prewikka-httpd
 		rm -f /var/lock/subsys/prewikka
-	    fi
-	    ;;
+	else
+		msg_not_running "Prewikka"
+	fi
+}
 
-    restart)
-	    $0 stop
-	    $0 start
-	    exit $?
-	    ;;
+RETVAL=0
+case "$1" in
+start)
+	start
+	;;
 
-    reload|force-reload)
-	    if [ -f /var/lock/subsys/prewikka ]; then
+stop)
+	stop
+	;;
+
+restart)
+	stop
+	start
+	;;
+
+reload|force-reload)
+	if [ -f /var/lock/subsys/prewikka ]; then
 		msg_reloading "Prewikka"
 		killproc prewikka-httpd -HUP
 		RETVAL=$?
-	    else
-		msg_not_running prewikka >&2
+	else
+		msg_not_running prewikka
 		exit 7
-	    fi
-	    ;;
+	fi
+	;;
 
-    status)
-	    status prewikka
-    ;;
-
-    *)
-    echo $"Usage: $0 {start|stop|restart|reload|force-reload|status}"
-    exit 1
-
+status)
+	status prewikka
+	;;
+*)
+	msg_usage "$0 {start|stop|restart|reload|force-reload|status}"
+	exit 3
 esac
 
-exit 0
+exit $RETVAL
