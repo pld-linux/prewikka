@@ -1,0 +1,9 @@
+# Prewikka startup configuration file
+
+# Try to define nice-level for running Prewikka
+SERVICE_RUN_NICE_LEVEL="+0"
+
+# default prewikka options
+# -a [address]	default: 0.0.0.0
+# -p [port]	default: 8000
+#PREWIKKA_OPTS=""
