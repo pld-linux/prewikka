@@ -11,10 +11,10 @@ Source1:	%{name}.init
 Source2:	%{name}.sysconfig
 URL:		http://www.prelude-ids.org/
 BuildRequires:	python-cheetah
+Requires:	python-cheetah
 Requires:	python-libprelude
 Requires:	python-libpreludedb
 Requires:	python-modules
-Requires:	python-cheetah
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -35,7 +35,8 @@ python setup.py build
 %install
 rm -rf $RPM_BUILD_ROOT
 
-python setup.py install --optimize=2 \
+python setup.py install \
+	--optimize=2 \
 	--root=$RPM_BUILD_ROOT
 
 install -d $RPM_BUILD_ROOT/etc/{rc.d/init.d,sysconfig}
@@ -68,9 +69,7 @@ fi
 
 %preun
 if [ "$1" = "0" ]; then
-	if [ -f /var/lock/subsys/prewikka ]; then
-		%service prewikka stop 1>&2
-	fi
+	%service prewikka stop
 	/sbin/chkconfig --del prewikka
 fi
 
