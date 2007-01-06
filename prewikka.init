@@ -9,7 +9,7 @@
 
 # Get service config
 if [ -f /etc/sysconfig/prewikka ]; then
-        . /etc/sysconfig/prewikka
+	. /etc/sysconfig/prewikka
 else
 	nls "Error: %s not found" /etc/sysconfig/prewikka
 	nls " Prewikka can't be run."
