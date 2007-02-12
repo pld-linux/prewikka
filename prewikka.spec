@@ -1,5 +1,5 @@
 Summary:	Prelude IDS web application
-Summary(pl):	Aplikacja WWW dla Prelude IDS
+Summary(pl.UTF-8):   Aplikacja WWW dla Prelude IDS
 Name:		prewikka
 Version:	0.9.9
 Release:	1
@@ -22,9 +22,9 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Prewikka is a professional looking application providing advanced
 feature like contextual filtering, aggregation, etc.
 
-%description -l pl
-Prewikka to profesjonalnie wygl±daj±ca aplikacja daj±ca zaawansowane
-mo¿liwo¶ci, takie jak filtrowanie kontekstowe, agregacjê itp.
+%description -l pl.UTF-8
+Prewikka to profesjonalnie wyglÄ…dajÄ…ca aplikacja dajÄ…ca zaawansowane
+moÅ¼liwoÅ›ci, takie jak filtrowanie kontekstowe, agregacjÄ™ itp.
 
 %prep
 %setup -q
