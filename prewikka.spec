@@ -1,5 +1,5 @@
 Summary:	Prelude IDS web application
-Summary(pl.UTF-8):   Aplikacja WWW dla Prelude IDS
+Summary(pl.UTF-8):	Aplikacja WWW dla Prelude IDS
 Name:		prewikka
 Version:	0.9.9
 Release:	1
