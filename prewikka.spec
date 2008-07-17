@@ -1,15 +1,16 @@
 Summary:	Prelude IDS web application
 Summary(pl.UTF-8):	Aplikacja WWW dla Prelude IDS
 Name:		prewikka
-Version:	0.9.13
+Version:	0.9.14
 Release:	1
 License:	GPL v2+
 Group:		Applications
-Source0:	http://www.prelude-ids.org/download/releases/%{name}-%{version}.tar.gz
-# Source0-md5:	4b922ce76bb3ae87922f8a2e63e0aa5d
+#Source0Download: http://www.prelude-ids.com/developpement/telechargement/index.html
+Source0:	http://www.prelude-ids.com/download/releases/prewikka/%{name}-%{version}.tar.gz
+# Source0-md5:	f70ce2700ccb2d67bccc7a59ee57a472
 Source1:	%{name}.init
 Source2:	%{name}.sysconfig
-URL:		http://www.prelude-ids.org/
+URL:		http://www.prelude-ids.com/
 BuildRequires:	python >= 1:2.5
 BuildRequires:	python-cheetah
 BuildRequires:	rpm-pythonprov
@@ -33,12 +34,12 @@ możliwości, takie jak filtrowanie kontekstowe, agregację itp.
 %setup -q
 
 %build
-python setup.py build
+%{__python} setup.py build
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
-python setup.py install \
+%{__python} setup.py install \
 	--optimize=2 \
 	--root=$RPM_BUILD_ROOT
 
