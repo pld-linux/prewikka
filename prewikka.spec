@@ -4,7 +4,7 @@ Name:		prewikka
 Version:	1.0.0
 Release:	1
 License:	GPL v2+
-Group:		Applications
+Group:		Applications/Networking
 #Source0Download: http://www.prelude-ids.com/developpement/telechargement/index.html
 Source0:	http://www.prelude-ids.com/download/releases/prewikka/%{name}-%{version}.tar.gz
 # Source0-md5:	87c20b23a909b2af2c68a9ded0a987bc
@@ -12,14 +12,13 @@ Source1:	%{name}.init
 Source2:	%{name}.sysconfig
 URL:		http://www.prelude-ids.com/
 BuildRequires:	python >= 1:2.5
-BuildRequires:	python-bpdb
 BuildRequires:	python-cheetah
 BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.219
 %pyrequires_eq	python-modules
 Requires:	python-cheetah
-Requires:	python-libprelude
-Requires:	python-libpreludedb
+Requires:	python-libprelude >= 1.0.0
+Requires:	python-libpreludedb >= 1.0.0
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
