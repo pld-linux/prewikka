@@ -1,0 +1,11 @@
+--- prewikka-3.1.0/prewikka/localization.py.orig	2016-09-15 08:49:49.000000000 +0200
++++ prewikka-3.1.0/prewikka/localization.py	2016-10-16 08:28:51.410825370 +0200
+@@ -43,7 +43,7 @@
+         self._catalogs_lock = Lock()
+ 
+         self._domains_lock = Lock()
+-        self._domains = utils.OrderedDict([("prewikka", pkg_resources.resource_filename(__name__, "locale"))])
++        self._domains = utils.OrderedDict([("prewikka", "/usr/share/locale")])
+ 
+     def addDomain(self, domain, locale_dir):
+         with self._domains_lock:

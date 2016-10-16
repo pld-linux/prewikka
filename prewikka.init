@@ -19,7 +19,7 @@ fi
 start() {
 	if [ ! -f /var/lock/subsys/prewikka ]; then
 		msg_starting "Prewikka"
-		daemon --fork prewikka-httpd $PREWIKKA_OPTS
+		daemon --user http --fork prewikka-httpd $PREWIKKA_OPTS
 		RETVAL=$?
 		[ $RETVAL -eq 0 ] && touch /var/lock/subsys/prewikka
 	else
