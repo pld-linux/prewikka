@@ -1,6 +1,6 @@
---- prewikka-3.1.0/setup.py.orig	2016-09-15 08:49:49.000000000 +0200
-+++ prewikka-3.1.0/setup.py	2016-10-16 09:08:52.787464603 +0200
-@@ -184,7 +184,7 @@
+--- prewikka-4.1.5/setup.py.orig	2017-12-06 01:34:12.000000000 +0100
++++ prewikka-4.1.5/setup.py	2018-08-30 19:47:24.172882783 +0200
+@@ -58,7 +58,7 @@
  class my_install(install):
      def finalize_options(self):
          ### if no prefix is given, configuration should go to /etc or in {prefix}/etc otherwise
@@ -9,12 +9,12 @@
              self.conf_prefix = self.prefix + "/etc/prewikka"
              self.data_prefix = self.prefix + "/var/lib/prewikka"
          else:
-@@ -209,7 +209,7 @@
+@@ -83,7 +83,7 @@
          self.mkpath((self.root or "") + self.data_prefix)
  
      def init_siteconfig(self):
 -        config = open("prewikka/siteconfig.py", "w")
 +        config = open(os.path.join(self.build_lib, "prewikka/siteconfig.py"), "w")
-         print >> config, "conf_dir = '%s'" % os.path.abspath((self.conf_prefix))
-         print >> config, "data_dir = '%s'" % os.path.abspath(self.data_prefix)
-         print >> config, "libprelude_required_version = '%s'" % LIBPRELUDE_REQUIRED_VERSION
+         config.write("tmp_dir = '%s'\n" % (os.path.join(tempfile.gettempdir(), "prewikka")))
+         config.write("conf_dir = '%s'\n" % (os.path.abspath(self.conf_prefix)))
+         config.write("data_dir = '%s'\n" % (os.path.abspath(self.data_prefix)))

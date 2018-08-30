@@ -2,29 +2,30 @@
 Summary:	Prelude IDS web application
 Summary(pl.UTF-8):	Aplikacja WWW dla Prelude IDS
 Name:		prewikka
-Version:	3.1.0
+Version:	4.1.5
 Release:	1
 License:	GPL v2+
 Group:		Applications/Networking
 #Source0Download: https://www.prelude-siem.org/projects/prelude/files
-Source0:	https://www.prelude-siem.org/attachments/download/727/%{name}-%{version}.tar.gz
-# Source0-md5:	a7c721c3322558f8e94608cc3a12abb2
+Source0:	https://www.prelude-siem.org/attachments/download/837/%{name}-%{version}.tar.gz
+# Source0-md5:	f58d4c3069692cdd9eb3a82ceb997a2c
 Source1:	%{name}.init
 Source2:	%{name}.sysconfig
 Patch0:		%{name}-localedir.patch
 Patch1:		%{name}-install.patch
 URL:		https://www.prelude-siem.org/
 BuildRequires:	python >= 1:2.6
-BuildRequires:	python-cheetah
-BuildRequires:	python-lesscpy
 BuildRequires:	python-setuptools
 BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.714
-%pyrequires_eq	python-modules
+Requires:	python-Mako
+Requires:	python-PyYAML
 Requires:	python-babel
-Requires:	python-cheetah
-Requires:	python-libprelude >= 1.0.0
-Requires:	python-libpreludedb >= 1.0.0
+Requires:	python-libprelude >= 4.1.0
+Requires:	python-libpreludedb >= 4.1.0
+Requires:	python-modules >= 1:2.6
+Requires:	python-pytz
+Requires:	python-werkzeug
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -126,8 +127,10 @@ fi
 %files -f %{name}.lang
 %defattr(644,root,root,755)
 %doc AUTHORS COPYING.* NEWS README
+%attr(755,root,root) %{_bindir}/prewikka-crontab
 %dir %{_sysconfdir}/%{name}
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/%{name}/prewikka.conf
+%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/%{name}/menu.yml
 %dir %{_datadir}/%{name}
 %dir %{_datadir}/%{name}/prewikka.wsgi
 %{py_sitescriptdir}/prewikka
