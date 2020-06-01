@@ -1,20 +1,47 @@
---- prewikka-4.1.5/setup.py.orig	2017-12-06 01:34:12.000000000 +0100
-+++ prewikka-4.1.5/setup.py	2018-08-30 19:47:24.172882783 +0200
-@@ -58,7 +58,7 @@
+--- prewikka-5.1.1/setup.py.orig	2020-06-01 10:35:38.298198370 +0200
++++ prewikka-5.1.1/setup.py	2020-06-01 10:38:08.975032903 +0200
+@@ -39,7 +39,7 @@
+ LIBPRELUDEDB_REQUIRED_VERSION = "5.1.0"
+ 
+ 
+-def init_siteconfig(conf_prefix, data_prefix):
++def init_siteconfig(conf_prefix, data_prefix, build_lib):
+     """
+     Initialize configuration file (prewikka/siteconfig.py).
+ 
+@@ -54,7 +54,7 @@
+         ('libpreludedb_required_version', LIBPRELUDEDB_REQUIRED_VERSION),
+     )
+ 
+-    with open('prewikka/siteconfig.py', 'w') as config_file:
++    with open(os.path.join(build_lib, 'prewikka/siteconfig.py'), 'w') as config_file:
+         for option, value in configuration:
+             config_file.write("%s = '%s'\n" % (option, value))
+ 
+@@ -74,7 +74,7 @@
  class my_install(install):
      def finalize_options(self):
-         ### if no prefix is given, configuration should go to /etc or in {prefix}/etc otherwise
+         # if no prefix is given, configuration should go to /etc or in {prefix}/etc otherwise
 -        if self.prefix:
 +        if self.prefix and self.prefix != '/usr':
              self.conf_prefix = self.prefix + "/etc/prewikka"
              self.data_prefix = self.prefix + "/var/lib/prewikka"
          else:
-@@ -83,7 +83,7 @@
-         self.mkpath((self.root or "") + self.data_prefix)
+@@ -110,7 +110,7 @@
+         self.install_conf()
+         self.install_wsgi()
+         self.create_datadir()
+-        init_siteconfig(self.conf_prefix, self.data_prefix)
++        init_siteconfig(self.conf_prefix, self.data_prefix, self.build_lib)
+         install.run(self)
  
-     def init_siteconfig(self):
--        config = open("prewikka/siteconfig.py", "w")
-+        config = open(os.path.join(self.build_lib, "prewikka/siteconfig.py"), "w")
-         config.write("tmp_dir = '%s'\n" % (os.path.join(tempfile.gettempdir(), "prewikka")))
-         config.write("conf_dir = '%s'\n" % (os.path.abspath(self.conf_prefix)))
-         config.write("data_dir = '%s'\n" % (os.path.abspath(self.data_prefix)))
+         os.chmod((self.root or "") + self.conf_prefix, 0o755)
+@@ -180,7 +180,7 @@
+         self.test_suite = True
+ 
+     def run_tests(self):
+-        init_siteconfig('conf', 'tests/downloads')
++        init_siteconfig('conf', 'tests/downloads', '')
+ 
+         import pytest  # import here, cause outside the eggs aren't loaded
+ 

@@ -1,0 +1,46 @@
+--- prewikka-5.1.1/prewikka/locale/es/LC_MESSAGES/prewikka.po~	2019-10-27 00:24:42.000000000 +0200
++++ prewikka-5.1.1/prewikka/locale/es/LC_MESSAGES/prewikka.po	2020-06-01 10:39:54.068466316 +0200
+@@ -2134,7 +2134,7 @@
+ #: prewikka/views/messagesummary/messagesummary.py:830
+ #, fuzzy, python-format
+ msgid "Target file %s"
+-msgstr "Destino"
++msgstr "Destino %s"
+ 
+ #: prewikka/views/messagesummary/messagesummary.py:830
+ msgid "category"
+--- prewikka-5.1.1/prewikka/locale/pl/LC_MESSAGES/prewikka.po~	2019-10-27 00:24:42.000000000 +0200
++++ prewikka-5.1.1/prewikka/locale/pl/LC_MESSAGES/prewikka.po	2020-06-01 10:41:12.101925267 +0200
+@@ -1899,7 +1899,7 @@
+ #: prewikka/views/messagesummary/messagesummary.py:365
+ #, fuzzy, python-format
+ msgid "(agent local time: %s)"
+-msgstr "sondy"
++msgstr "(czas lokalny agenta %s)"
+ 
+ #: prewikka/views/messagesummary/messagesummary.py:372
+ #: prewikka/views/messagesummary/messagesummary.py:835
+--- prewikka-5.1.1/prewikka/locale/pt_BR/LC_MESSAGES/prewikka.po~	2019-10-27 00:24:42.000000000 +0200
++++ prewikka-5.1.1/prewikka/locale/pt_BR/LC_MESSAGES/prewikka.po	2020-06-01 10:41:41.815410744 +0200
+@@ -2140,7 +2140,7 @@
+ #: prewikka/views/messagesummary/messagesummary.py:830
+ #, fuzzy, python-format
+ msgid "Target file %s"
+-msgstr "Alvo"
++msgstr "Alvo %s"
+ 
+ #: prewikka/views/messagesummary/messagesummary.py:830
+ msgid "category"
+--- prewikka-5.1.1/prewikka/locale/ru/LC_MESSAGES/prewikka.po~	2019-10-27 00:24:42.000000000 +0200
++++ prewikka-5.1.1/prewikka/locale/ru/LC_MESSAGES/prewikka.po	2020-06-01 10:42:39.012350869 +0200
+@@ -163,8 +163,8 @@
+ "No database branch migration script found for module %(module)s, branch "
+ "transition %(current)s -> %(required)s"
+ msgstr ""
+-"Не найдет скрипт установки базы данных для модуля %(module)s, version "
+-"%(version)s"
++"Не найдет скрипт установки базы данных для модуля %(module)s, branch "
++"transition %(current)s -> %(required)s"
+ 
+ #: prewikka/database.py:424
+ #, python-format

@@ -2,27 +2,29 @@
 Summary:	Prelude IDS web application
 Summary(pl.UTF-8):	Aplikacja WWW dla Prelude IDS
 Name:		prewikka
-Version:	4.1.5
+Version:	5.1.1
 Release:	1
 License:	GPL v2+
 Group:		Applications/Networking
 #Source0Download: https://www.prelude-siem.org/projects/prelude/files
-Source0:	https://www.prelude-siem.org/attachments/download/837/%{name}-%{version}.tar.gz
-# Source0-md5:	f58d4c3069692cdd9eb3a82ceb997a2c
+Source0:	https://www.prelude-siem.org/attachments/download/1182/%{name}-%{version}.tar.gz
+# Source0-md5:	aa5f3621ec027211f8e4bb4474821562
 Source1:	%{name}.init
 Source2:	%{name}.sysconfig
 Patch0:		%{name}-localedir.patch
 Patch1:		%{name}-install.patch
+Patch2:		locale.patch
 URL:		https://www.prelude-siem.org/
 BuildRequires:	python >= 1:2.6
+BuildRequires:	python-lesscpy
 BuildRequires:	python-setuptools
 BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.714
 Requires:	python-Mako
 Requires:	python-PyYAML
 Requires:	python-babel
-Requires:	python-libprelude >= 4.1.0
-Requires:	python-libpreludedb >= 4.1.0
+Requires:	python-libprelude >= 5.1.0
+Requires:	python-libpreludedb >= 5.1.0
 Requires:	python-modules >= 1:2.6
 Requires:	python-pytz
 Requires:	python-werkzeug
@@ -65,6 +67,7 @@ na porcie dostępnym dla użytkownika (>= 1024, domyślnie 8000).
 %setup -q
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
 
 %build
 %py_build
@@ -127,6 +130,7 @@ fi
 %files -f %{name}.lang
 %defattr(644,root,root,755)
 %doc AUTHORS COPYING.* NEWS README
+%attr(755,root,root) %{_bindir}/prewikka-cli
 %attr(755,root,root) %{_bindir}/prewikka-crontab
 %dir %{_sysconfdir}/%{name}
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/%{name}/prewikka.conf
