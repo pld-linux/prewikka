@@ -82,13 +82,8 @@ install -d $RPM_BUILD_ROOT/etc/{rc.d/init.d,sysconfig}
 install %{SOURCE1} $RPM_BUILD_ROOT/etc/rc.d/init.d/%{name}
 install %{SOURCE2} $RPM_BUILD_ROOT/etc/sysconfig/%{name}
 
-install -d $RPM_BUILD_ROOT%{_sysconfdir}/%{name}
-install conf/prewikka.conf $RPM_BUILD_ROOT%{_sysconfdir}/%{name}
-
 install -d $RPM_BUILD_ROOT%{_datadir}
 %{__mv} $RPM_BUILD_ROOT%{py3_sitescriptdir}/prewikka/locale $RPM_BUILD_ROOT%{_datadir}
-
-%py_postclean
 
 %find_lang %{name}
 
