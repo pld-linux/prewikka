@@ -1,11 +1,11 @@
---- prewikka-4.1.5/prewikka/localization.py.orig	2018-08-30 19:08:33.012909410 +0200
-+++ prewikka-4.1.5/prewikka/localization.py	2018-08-30 19:46:24.479550140 +0200
-@@ -57,7 +57,7 @@
+--- prewikka-5.2.0/prewikka/localization.py.orig	2024-09-19 10:35:19.108921231 +0200
++++ prewikka-5.2.0/prewikka/localization.py	2024-09-19 18:18:41.388303356 +0200
+@@ -56,7 +56,7 @@ class TranslationProxy(object):
          self._catalogs_lock = Lock()
  
          self._domains_lock = Lock()
 -        self._domains = collections.OrderedDict([("prewikka", pkg_resources.resource_filename(__name__, "locale"))])
 +        self._domains = collections.OrderedDict([("prewikka", "/usr/share/locale")])
  
-     def addDomain(self, domain, locale_dir):
+     def add_domain(self, domain, locale_dir):
          with self._domains_lock:

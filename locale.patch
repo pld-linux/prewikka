@@ -1,35 +1,35 @@
---- prewikka-5.1.1/prewikka/locale/es/LC_MESSAGES/prewikka.po~	2019-10-27 00:24:42.000000000 +0200
-+++ prewikka-5.1.1/prewikka/locale/es/LC_MESSAGES/prewikka.po	2020-06-01 10:39:54.068466316 +0200
-@@ -2134,7 +2134,7 @@
- #: prewikka/views/messagesummary/messagesummary.py:830
+--- prewikka-5.2.0/prewikka/locale/es/LC_MESSAGES/prewikka.po.orig	2024-09-19 18:20:07.107838973 +0200
++++ prewikka-5.2.0/prewikka/locale/es/LC_MESSAGES/prewikka.po	2024-09-19 18:21:27.200738406 +0200
+@@ -2391,7 +2391,7 @@ msgstr ""
+ #: prewikka/views/messagesummary/messagesummary.py:843
  #, fuzzy, python-format
  msgid "Target file %s"
 -msgstr "Destino"
 +msgstr "Destino %s"
  
- #: prewikka/views/messagesummary/messagesummary.py:830
+ #: prewikka/views/messagesummary/messagesummary.py:843
  msgid "category"
---- prewikka-5.1.1/prewikka/locale/pl/LC_MESSAGES/prewikka.po~	2019-10-27 00:24:42.000000000 +0200
-+++ prewikka-5.1.1/prewikka/locale/pl/LC_MESSAGES/prewikka.po	2020-06-01 10:41:12.101925267 +0200
-@@ -1899,7 +1899,7 @@
- #: prewikka/views/messagesummary/messagesummary.py:365
+--- prewikka-5.2.0/prewikka/locale/pl/LC_MESSAGES/prewikka.po.orig	2024-09-19 18:20:07.111172289 +0200
++++ prewikka-5.2.0/prewikka/locale/pl/LC_MESSAGES/prewikka.po	2024-09-19 18:21:49.987281628 +0200
+@@ -2160,7 +2160,7 @@ msgstr "Dane"
+ #: prewikka/views/messagesummary/messagesummary.py:372
  #, fuzzy, python-format
  msgid "(agent local time: %s)"
 -msgstr "sondy"
 +msgstr "(czas lokalny agenta %s)"
  
- #: prewikka/views/messagesummary/messagesummary.py:372
- #: prewikka/views/messagesummary/messagesummary.py:835
---- prewikka-5.1.1/prewikka/locale/pt_BR/LC_MESSAGES/prewikka.po~	2019-10-27 00:24:42.000000000 +0200
-+++ prewikka-5.1.1/prewikka/locale/pt_BR/LC_MESSAGES/prewikka.po	2020-06-01 10:41:41.815410744 +0200
-@@ -2140,7 +2140,7 @@
- #: prewikka/views/messagesummary/messagesummary.py:830
+ #: prewikka/views/messagesummary/messagesummary.py:379
+ #: prewikka/views/messagesummary/messagesummary.py:848
+--- prewikka-5.2.0/prewikka/locale/pt_BR/LC_MESSAGES/prewikka.po.orig	2024-09-19 18:20:07.114505604 +0200
++++ prewikka-5.2.0/prewikka/locale/pt_BR/LC_MESSAGES/prewikka.po	2024-09-19 18:22:10.120505890 +0200
+@@ -2395,7 +2395,7 @@ msgstr "C Dispositivo secundário"
+ #: prewikka/views/messagesummary/messagesummary.py:843
  #, fuzzy, python-format
  msgid "Target file %s"
 -msgstr "Alvo"
 +msgstr "Alvo %s"
  
- #: prewikka/views/messagesummary/messagesummary.py:830
+ #: prewikka/views/messagesummary/messagesummary.py:843
  msgid "category"
 --- prewikka-5.1.1/prewikka/locale/ru/LC_MESSAGES/prewikka.po~	2019-10-27 00:24:42.000000000 +0200
 +++ prewikka-5.1.1/prewikka/locale/ru/LC_MESSAGES/prewikka.po	2020-06-01 10:42:39.012350869 +0200

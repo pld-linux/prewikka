@@ -1,7 +1,7 @@
---- prewikka-5.1.1/setup.py.orig	2020-06-01 10:35:38.298198370 +0200
-+++ prewikka-5.1.1/setup.py	2020-06-01 10:38:08.975032903 +0200
-@@ -39,7 +39,7 @@
- LIBPRELUDEDB_REQUIRED_VERSION = "5.1.0"
+--- prewikka-5.2.0/setup.py.orig	2020-09-09 16:44:23.000000000 +0200
++++ prewikka-5.2.0/setup.py	2024-09-19 18:19:38.534660434 +0200
+@@ -39,7 +39,7 @@ LIBPRELUDE_REQUIRED_VERSION = "5.2.0"
+ LIBPRELUDEDB_REQUIRED_VERSION = "5.2.0"
  
  
 -def init_siteconfig(conf_prefix, data_prefix):
@@ -9,7 +9,7 @@
      """
      Initialize configuration file (prewikka/siteconfig.py).
  
-@@ -54,7 +54,7 @@
+@@ -54,7 +54,7 @@ def init_siteconfig(conf_prefix, data_pr
          ('libpreludedb_required_version', LIBPRELUDEDB_REQUIRED_VERSION),
      )
  
@@ -18,7 +18,7 @@
          for option, value in configuration:
              config_file.write("%s = '%s'\n" % (option, value))
  
-@@ -74,7 +74,7 @@
+@@ -74,7 +74,7 @@ class MyDistribution(Distribution):
  class my_install(install):
      def finalize_options(self):
          # if no prefix is given, configuration should go to /etc or in {prefix}/etc otherwise
@@ -27,7 +27,7 @@
              self.conf_prefix = self.prefix + "/etc/prewikka"
              self.data_prefix = self.prefix + "/var/lib/prewikka"
          else:
-@@ -110,7 +110,7 @@
+@@ -112,7 +112,7 @@ class my_install(install):
          self.install_conf()
          self.install_wsgi()
          self.create_datadir()
@@ -36,7 +36,7 @@
          install.run(self)
  
          os.chmod((self.root or "") + self.conf_prefix, 0o755)
-@@ -180,7 +180,7 @@
+@@ -182,7 +182,7 @@ class PrewikkaTest(TestCommand):
          self.test_suite = True
  
      def run_tests(self):

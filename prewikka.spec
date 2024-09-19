@@ -2,32 +2,33 @@
 Summary:	Prelude IDS web application
 Summary(pl.UTF-8):	Aplikacja WWW dla Prelude IDS
 Name:		prewikka
-Version:	5.1.1
+Version:	5.2.0
 Release:	1
 License:	GPL v2+
 Group:		Applications/Networking
 #Source0Download: https://www.prelude-siem.org/projects/prelude/files
-Source0:	https://www.prelude-siem.org/attachments/download/1182/%{name}-%{version}.tar.gz
-# Source0-md5:	aa5f3621ec027211f8e4bb4474821562
+Source0:	https://www.prelude-siem.org/attachments/download/1400/%{name}-%{version}.tar.gz
+# Source0-md5:	e1102494dfa50c9df91d5db08ffe51af
 Source1:	%{name}.init
 Source2:	%{name}.sysconfig
 Patch0:		%{name}-localedir.patch
 Patch1:		%{name}-install.patch
 Patch2:		locale.patch
 URL:		https://www.prelude-siem.org/
-BuildRequires:	python >= 1:2.6
+# lesscpy script is used to build
 BuildRequires:	python-lesscpy
-BuildRequires:	python-setuptools
+BuildRequires:	python3 >= 1:3.2
+BuildRequires:	python3-setuptools
 BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.714
-Requires:	python-Mako
-Requires:	python-PyYAML
-Requires:	python-babel
-Requires:	python-libprelude >= 5.1.0
-Requires:	python-libpreludedb >= 5.1.0
-Requires:	python-modules >= 1:2.6
-Requires:	python-pytz
-Requires:	python-werkzeug
+Requires:	python3-Mako
+Requires:	python3-PyYAML
+Requires:	python3-babel
+Requires:	python3-libprelude >= 5.2.0
+Requires:	python3-libpreludedb >= 5.2.0
+Requires:	python3-modules >= 1:3.2
+Requires:	python3-pytz
+Requires:	python3-werkzeug
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -70,12 +71,12 @@ na porcie dostępnym dla użytkownika (>= 1024, domyślnie 8000).
 %patch2 -p1
 
 %build
-%py_build
+%py3_build
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
-%py_install
+%py3_install
 
 install -d $RPM_BUILD_ROOT/etc/{rc.d/init.d,sysconfig}
 install %{SOURCE1} $RPM_BUILD_ROOT/etc/rc.d/init.d/%{name}
@@ -85,7 +86,7 @@ install -d $RPM_BUILD_ROOT%{_sysconfdir}/%{name}
 install conf/prewikka.conf $RPM_BUILD_ROOT%{_sysconfdir}/%{name}
 
 install -d $RPM_BUILD_ROOT%{_datadir}
-%{__mv} $RPM_BUILD_ROOT%{py_sitescriptdir}/prewikka/locale $RPM_BUILD_ROOT%{_datadir}
+%{__mv} $RPM_BUILD_ROOT%{py3_sitescriptdir}/prewikka/locale $RPM_BUILD_ROOT%{_datadir}
 
 %py_postclean
 
@@ -135,14 +136,19 @@ fi
 %dir %{_sysconfdir}/%{name}
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/%{name}/prewikka.conf
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/%{name}/menu.yml
+%dir %{_sysconfdir}/%{name}/conf.d
+%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/%{name}/conf.d/auth.conf
+%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/%{name}/conf.d/external_app.conf
+%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/%{name}/conf.d/logs.conf
+%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/%{name}/conf.d/riskoverview.conf
 %dir %{_datadir}/%{name}
-%dir %{_datadir}/%{name}/prewikka.wsgi
-%{py_sitescriptdir}/prewikka
-%{py_sitescriptdir}/prewikka-%{version}-py*.egg-info
+%{_datadir}/%{name}/prewikka.wsgi
+%{py3_sitescriptdir}/prewikka
+%{py3_sitescriptdir}/prewikka-%{version}-py*.egg-info
 %attr(770,root,http) %dir /var/lib/prewikka
 
 %files httpd
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/prewikka-httpd
-%attr(754,root,root) /etc/rc.d/init.d/%{name}
-%config(noreplace) %verify(not md5 mtime size) /etc/sysconfig/%{name}
+%attr(754,root,root) /etc/rc.d/init.d/prewikka
+%config(noreplace) %verify(not md5 mtime size) /etc/sysconfig/prewikka
