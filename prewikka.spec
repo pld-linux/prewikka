@@ -3,7 +3,7 @@ Summary:	Prelude IDS web application
 Summary(pl.UTF-8):	Aplikacja WWW dla Prelude IDS
 Name:		prewikka
 Version:	5.2.0
-Release:	1
+Release:	
 License:	GPL v2+
 Group:		Applications/Networking
 #Source0Download: https://www.prelude-siem.org/projects/prelude/files
