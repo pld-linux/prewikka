@@ -3,7 +3,7 @@ Summary:	Prelude IDS web application
 Summary(pl.UTF-8):	Aplikacja WWW dla Prelude IDS
 Name:		prewikka
 Version:	5.2.0
-Release:	
+Release:	2
 License:	GPL v2+
 Group:		Applications/Networking
 #Source0Download: https://www.prelude-siem.org/projects/prelude/files
@@ -66,9 +66,9 @@ na porcie dostępnym dla użytkownika (>= 1024, domyślnie 8000).
 
 %prep
 %setup -q
-%patch0 -p1
-%patch1 -p1
-%patch2 -p1
+%patch -P 0 -p1
+%patch -P 1 -p1
+%patch -P 2 -p1
 
 %build
 %py3_build
